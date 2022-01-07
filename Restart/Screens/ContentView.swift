@@ -1,16 +1,29 @@
-//
-//  ContentView.swift
-//  Restart
-//
-//  Created by John Canzoneri on 1/7/22.
-//
+//central hub of the application
 
 import SwiftUI
 
+//property to hold intial and further state
+
+
 struct ContentView: View {
+    
+    @AppStorage("onboarding") var isOnboardingViewActive: Bool = true
+    //@AppStorage a special swiftUI property wrapper that will use user's default under the hood
+    //Purpose is to store some value on the devices permanent storage using get and set method
+    //"onboarding" a unique key identifer that we can refer too
+    // the variable, is the peoperty name we can use in swiftUI
+    //the true is to intialize
+    //logic is the very first screen users see is onboarding screen
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        ZStack {
+            if isOnboardingViewActive {
+                OnboardingView()
+                
+            } else {
+                HomeView()
+            }
+        }
     }
 }
 
